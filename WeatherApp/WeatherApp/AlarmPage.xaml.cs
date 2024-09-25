@@ -54,7 +54,6 @@ namespace WeatherApp
                 HorizontalOptions = LayoutOptions.Center,
                 ThumbColor = Color.DodgerBlue,
                 OnColor = Color.LightSteelBlue,
-
             };
             layout.Children.Add(repeatText);
             layout.Children.Add(repeat);
