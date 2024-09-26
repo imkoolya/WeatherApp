@@ -4,9 +4,9 @@
              x:Class="WeatherApp.MainPage">
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" HorizontalOptions="Center" >
-            <Label Text="Welcome to WeatherApp!" FontFamily="Montserrat" FontSize="Title" Padding="30,10,30,10" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
-            <Button x:Name="getWeatherButton" CornerRadius="15" FontFamily="Montserrat" Text="Get weather" Clicked="GetWeather" />
-            <Button x:Name="setAlarmButton" CornerRadius="15" FontFamily="Montserrat" Text="Set an alarm" Clicked="SetAlarm" />
+            <Label Text="Добро пожаловать в WeatherApp!" FontFamily="Montserrat" FontSize="Title" Padding="30,10,30,10" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+            <Button x:Name="getWeatherButton" CornerRadius="15" FontFamily="Montserrat" Text="Узнать погоду" Clicked="GetWeather" />
+            <Button x:Name="setAlarmButton" CornerRadius="15" FontFamily="Montserrat" Text="Установить будильник" Clicked="SetAlarm" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

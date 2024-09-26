@@ -4,7 +4,7 @@
              x:Class="WeatherApp.AlarmPage">
     <ContentPage.Content>
         <StackLayout x:Name="layout" >
-            <Label Text="Set an alarm" FontFamily="Montserrat" FontSize="45" Padding="30,10,30,10" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+            <Label Text="Установить будильник" FontFamily="Montserrat" FontSize="45" Padding="30,10,30,10" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

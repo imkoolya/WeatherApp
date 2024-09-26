@@ -4,7 +4,7 @@
              x:Class="WeatherApp.WeatherPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Weather now" FontFamily="Montserrat" FontSize="45" Padding="30,10,30,10" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+            <Label Text="Погода сейчас" FontFamily="Montserrat" FontSize="45" Padding="30,10,30,10" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
             <Grid x:Name="grid"></Grid>
         </StackLayout>
     </ContentPage.Content>
