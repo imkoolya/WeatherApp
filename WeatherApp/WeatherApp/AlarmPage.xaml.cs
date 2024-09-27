@@ -17,7 +17,7 @@ namespace WeatherApp
         {
             var datePicker = new DatePicker
             {
-                Format = "D",
+                Format = "MMMM/dd/yyyy",
                 MaximumDate = DateTime.Now.AddDays(7),
                 MinimumDate = DateTime.Now.AddDays(-7),
                 Style = (Style)App.Current.Resources["ValidInputStyle"]
@@ -27,7 +27,8 @@ namespace WeatherApp
             var timePicker = new TimePicker
             {
                 Time = new TimeSpan(13, 0, 0),
-                Style = (Style)App.Current.Resources["ValidInputStyle"]
+                Style = (Style)App.Current.Resources["ValidInputStyle"],
+                Format = "HH:mm"
             };
             var timePickerText = new Label { Text = "Время запуска", FontSize = 20, HorizontalOptions = LayoutOptions.Center };
 
@@ -66,11 +67,11 @@ namespace WeatherApp
 
             };
 
-            datePicker.PropertyChanged += (sender, e) => DateChanged(sender, e, datePicker, saveButton);
+            datePicker.PropertyChanged += (sender, e) => TimeDateChanged(sender, e, datePicker, timePicker, saveButton);
             layout.Children.Add(datePickerText);
             layout.Children.Add(datePicker);
 
-            timePicker.PropertyChanged += (sender, e) => TimeChanged(sender, e, timePicker, saveButton);
+            timePicker.PropertyChanged += (sender, e) => TimeDateChanged(sender, e, datePicker, timePicker, saveButton);
             layout.Children.Add(timePickerText);
             layout.Children.Add(timePicker);
 
@@ -106,24 +107,16 @@ namespace WeatherApp
             layout.Children.Add(dateHeader);
             layout.Children.Add(dateText);
         }
-
-        private void DateChanged(object sender, EventArgs e, DatePicker datePicker, Button saveButton)
+        
+        private void SaveButtonClicked(object sender, EventArgs e, View[] views)
         {
-            if (datePicker.Date <= DateTime.Now)
-            {
-                saveButton.IsEnabled = false;
-                VisualStateManager.GoToState(datePicker, "Invalid");
-            }
-            else
-            {
-                VisualStateManager.GoToState(datePicker, "Valid");
-                saveButton.IsEnabled = true;
-            }
+            foreach (var view in views)
+                view.IsEnabled = false;
         }
 
-        private void TimeChanged(object sender, EventArgs e, TimePicker timePicker, Button saveButton)
+        private void TimeDateChanged(object sender, EventArgs e, DatePicker datePicker, TimePicker timePicker, Button saveButton)
         {
-            if (timePicker.Time <= DateTime.Now.TimeOfDay)
+            if (datePicker.Date != DateTime.MinValue && timePicker.Time <= DateTime.Now.TimeOfDay)
             {
                 VisualStateManager.GoToState(timePicker, "Invalid");
                 saveButton.IsEnabled = false;
@@ -133,12 +126,6 @@ namespace WeatherApp
                 VisualStateManager.GoToState(timePicker, "Valid");
                 saveButton.IsEnabled = true;
             }
-        }
-
-        private void SaveButtonClicked(object sender, EventArgs e, View[] views)
-        {
-            foreach (var view in views)
-                view.IsEnabled = false;
         }
     }
 }
