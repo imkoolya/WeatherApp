@@ -87,7 +87,8 @@ namespace WeatherApp
                 datePicker,
                 timePicker,
                 volume,
-                repeat
+                repeat,
+                saveButton
             });
             saveButton.Clicked += (s, e) => SaveAlarmHandler(s, e, datePicker.Date + timePicker.Time);
             layout.Children.Add(saveButton);
@@ -116,14 +117,20 @@ namespace WeatherApp
 
         private void TimeDateChanged(object sender, EventArgs e, DatePicker datePicker, TimePicker timePicker, Button saveButton)
         {
-            if (datePicker.Date != DateTime.MinValue && timePicker.Time <= DateTime.Now.TimeOfDay)
+            DateTime selectedDateTime = datePicker.Date + timePicker.Time;
+
+            if (selectedDateTime <= DateTime.Now)
             {
+                VisualStateManager.GoToState(datePicker, "Invalid");
                 VisualStateManager.GoToState(timePicker, "Invalid");
+
                 saveButton.IsEnabled = false;
             }
             else
             {
+                VisualStateManager.GoToState(datePicker, "Valid");
                 VisualStateManager.GoToState(timePicker, "Valid");
+
                 saveButton.IsEnabled = true;
             }
         }
